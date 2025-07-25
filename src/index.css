@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-gray-25: #fcfcfd;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-150: #e5e6ea;
+  --color-gray-200: #d2d5db;
+  --color-gray-250: #bbbec7;
+  --color-gray-300: #a9adb8;
+  --color-gray-400: #9196a3;
+  --color-gray-450: #6f737d;
+  --color-gray-500: #61656e;
+  --color-gray-600: #52555d;
+  --color-gray-700: #404048;
+  --color-gray-800: #28282f;
+  --color-gray-900: #1b1c1e;
+  --color-gray-950: #121417;
+
+  --color-pink-25: #fdf6f7;
+  --color-pink-50: #fae9ec;
+  --color-pink-100: #f2d4da;
+  --color-pink-200: #e5aebf;
+  --color-pink-300: #d58699;
+  --color-pink-400: #c66a84;
+  --color-pink-500: #b25472;
+  --color-pink-600: #98445f;
+  --color-pink-700: #7b344b;
+  --color-pink-800: #5d2638;
+
+  --color-yellow-300: #ffc428;
+  --color-yellow-400: #ffb112;
+
+  --color-blue-25: #f4f8ff;
+  --color-blue-50: #f4f8ff;
+  --color-blue-100: #eaf0fa;
+  --color-blue-200: #d4e0f5;
+  --color-blue-300: #b0c5ee;
+  --color-blue-400: #7b9ee2;
+  --color-blue-500: #4e78d2;
+  --color-blue-600: #3652b2;
+  --color-blue-700: #2e469c;
+  --color-blue-800: #263b85;
+  --color-blue-900: #1f306e;
+  --color-blue-950: #142358;
+
+  --color-red-500: #d21c1c;
+  --color-red-600: #bb1919;
+  --color-red-700: #a51717;
+  --color-red-800: #791213;
+
+  --color-main-200: #b0ddaf;
+  --color-main-300: #82c586;
+  --color-main-400: #60ae72;
+  --color-main-500: #4e9658;
+  --color-main-600: #2a8e5c;
+
+  --font-pretendard: 'Pretendard Variable';
+}
+
+.text-36-bold {
+  @apply font-pretendard text-[36px] leading-normal font-bold tracking-[0%];
+}
+.text-32-bold {
+  @apply font-pretendard text-[32px] leading-normal font-bold tracking-[0%];
+}
+.text-24-bold {
+  @apply font-pretendard text-[24px] leading-normal font-bold tracking-[0%];
+}
+.text-20-bold {
+  @apply font-pretendard text-[20px] leading-normal font-bold tracking-[0%];
+}
+.text-18-bold {
+  @apply font-pretendard text-[18px] leading-normal font-bold tracking-[0%];
+}
+.text-16-bold {
+  @apply font-pretendard text-[16px] leading-normal font-bold tracking-[0%];
+}
+.text-14-bold {
+  @apply font-pretendard text-[14px] leading-normal font-bold tracking-[0%];
+}
+.text-12-bold {
+  @apply font-pretendard text-[12px] leading-normal font-bold tracking-[0%];
+}
+.text-10-bold {
+  @apply font-pretendard text-[10px] leading-normal font-bold tracking-[0%];
+}
+.text-36-medium {
+  @apply font-pretendard text-[36px] leading-normal font-medium tracking-[0%];
+}
+.text-32-medium {
+  @apply font-pretendard text-[32px] leading-normal font-medium tracking-[0%];
+}
+.text-24-medium {
+  @apply font-pretendard text-[24px] leading-normal font-medium tracking-[0%];
+}
+.text-20-medium {
+  @apply font-pretendard text-[20px] leading-normal font-medium tracking-[0%];
+}
+.text-18-medium {
+  @apply font-pretendard text-[18px] leading-normal font-medium tracking-[0%];
+}
+.text-16-medium {
+  @apply font-pretendard text-[16px] leading-normal font-medium tracking-[0%];
+}
+.text-14-medium {
+  @apply font-pretendard text-[14px] leading-normal font-medium tracking-[0%];
+}
+.text-12-medium {
+  @apply font-pretendard text-[12px] leading-normal font-medium tracking-[0%];
+}
+.text-10-medium {
+  @apply font-pretendard text-[10px] leading-normal font-medium tracking-[0%];
+}
