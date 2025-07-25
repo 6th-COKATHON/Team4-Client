@@ -34,7 +34,7 @@ const Navbar = () => {
   const currentPath = window.location.pathname;
 
   return (
-    <nav className="fixed right-0 bottom-0 left-0 flex px-7 pt-4 pb-2">
+    <nav className="fixed right-0 bottom-0 left-0 z-100 flex px-7 pt-4 pb-2">
       <ul className="flex w-full list-none items-center justify-between">
         {NAV_LIST.map(item => (
           <li key={item.path}>

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useChats } from '../../hooks/useChats';
 import Header from '../../components/Header';
 import { Send } from 'lucide-react';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import api from '../../apis/api';
 
 interface Message {
@@ -18,7 +18,7 @@ const MessageRoom: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const chatRoomId = Number(id);
   const username = 'qwer';
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   // 1) 서버에서 채팅 목록 불러오기
   const {
@@ -48,11 +48,13 @@ const MessageRoom: React.FC = () => {
   // 4) 메시지 전송용 mutation (PUT 요청)
   const { mutate: putChat, isPending: isPosting } = useMutation({
     mutationFn: message => {
-      return api.post(`/api/v1/chatRooms/${chatRoomId}/chats`, message);
+      return api.post(`/api/v1/chatRooms/${chatRoomId}/chats`, {
+        message,
+      });
     },
     onSuccess: () => {
       // 전송 성공 시 다시 불러오기
-      queryClient.invalidateQueries({ queryKey: ['chats', chatRoomId] });
+      // queryClient.invalidateQueries({ queryKey: ['chats', chatRoomId] });
     },
   });
 

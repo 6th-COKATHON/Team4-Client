@@ -1,66 +1,80 @@
 // src/components/ChallengeCard.tsx
 import React from 'react';
 import challengeProgressCircle from '@/assets/icons/challenge-progress-circle.svg';
-import challengeProgressCircleMain from '@/assets/icons/challenge-progress-circle-main.svg';
+import challengeProgressCircleLocked from '@/assets/icons/challenge-progress-circle-locked.svg';
 
 interface ChallengeCardProps {
   isFirst?: boolean;
   isLast?: boolean;
   isMain?: boolean;
+  isDone?: boolean; // 완료
+  isCurrent?: boolean; // 현재 진행중
+  isLocked?: boolean; // 잠김
   children: React.ReactNode;
 }
+
+const MAIN = 'bg-main-600';
+const GRAY = 'bg-gray-300';
 
 const ChallengeCard: React.FC<ChallengeCardProps> = ({
   isFirst = false,
   isLast = false,
-  isMain = false,
+  isDone = false,
+  isCurrent = false,
+  isLocked = false,
   children,
 }) => {
-  // 선의 높이와 정렬(self‑*)을 결정
-  const progressStyle = () => {
-    const base = 'w-1 bg-main-600 relative';
-    if (isFirst) {
-      // 첫 노드는 아래 반만, 아래에 붙임
-      return `${base} h-1/2 self-end`;
-    }
-    if (isLast) {
-      // 마지막 노드는 위 반만, 위에 붙임
-      return `${base} h-1/2 self-start`;
-    }
-    // 중간 노드는 전체 높이, stretch
-    return `${base} h-full self-stretch`;
+  // 선 색상 결정
+  const getTopColor = () => {
+    if (isFirst) return ''; // 윗선 없음
+    if (isCurrent) return MAIN; // 현재 카드 위쪽은 이미 진행됨
+    if (isLocked) return GRAY;
+    if (isDone) return MAIN;
+    return GRAY;
   };
 
-  // circle 아이콘의 위치 결정
-  const challengeProgressCircleStyle = () => {
-    const pos = 'absolute left-1/2 -translate-x-1/2';
-    if (isFirst) {
-      return `${pos} top-0`;
-    }
-    if (isLast) {
-      return `${pos} bottom-0`;
-    }
-    return `${pos} top-1/2 -translate-y-1/2`;
+  const getBottomColor = () => {
+    if (isLast) return ''; // 아랫선 없음
+    if (isCurrent) return GRAY; // 현재 카드 아래쪽은 앞으로 진행될 영역
+    if (isLocked) return GRAY;
+    if (isDone) return MAIN;
+    return GRAY;
   };
 
-  // 메인(circle main) vs 서브(circle) 결정
-  const renderChallengeProgressCircle = () =>
-    isMain ? (
-      <img
-        src={challengeProgressCircleMain}
-        className={challengeProgressCircleStyle()}
-      />
-    ) : (
-      <img
-        src={challengeProgressCircle}
-        className={challengeProgressCircleStyle()}
-      />
-    );
+  const renderCircle = () => (
+    <img
+      src={isLocked ? challengeProgressCircleLocked : challengeProgressCircle}
+      className="relative z-10 h-full w-full"
+      alt=""
+    />
+  );
 
   return (
-    <div className="flex h-28 w-full items-center gap-5">
-      {/* 선 + circle 컨테이너 */}
-      <div className={progressStyle()}>{renderChallengeProgressCircle()}</div>
+    <div className="flex w-full items-stretch gap-5">
+      {/* 타임라인(세로선 + 원) */}
+      <div className="relative w-[2px] flex-shrink-0 self-stretch">
+        {/* 윗 선 */}
+        {!isFirst && (
+          <span
+            className={`absolute top-0 left-1/2 w-[2px] -translate-x-1/2 ${getTopColor()}`}
+            style={{ height: '50%' }}
+          />
+        )}
+
+        {/* 아랫 선 */}
+        {!isLast && (
+          <span
+            className={`absolute bottom-0 left-1/2 w-[2px] -translate-x-1/2 ${getBottomColor()}`}
+            style={{ height: '50%' }}
+          />
+        )}
+
+        {/* 원 아이콘 */}
+        <div className="absolute top-1/2 left-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2">
+          {renderCircle()}
+        </div>
+      </div>
+
       {/* 카드 본문 */}
       {children}
     </div>

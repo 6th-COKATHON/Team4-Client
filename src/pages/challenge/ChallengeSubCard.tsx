@@ -16,6 +16,7 @@ interface ChallengeSubCardProps {
   isAfter?: boolean;
   /** 완전 잠금 카드(회색) */
   isLocked?: boolean;
+  isDone?: boolean;
   title: string;
 }
 
@@ -26,24 +27,25 @@ const ChallengeSubCard: React.FC<ChallengeSubCardProps> = ({
   isCurrent = false,
   isAfter = false,
   isLocked = false,
+  isDone = false,
   title,
 }) => {
   // ─── 카드 스타일 분기 ───
-  const baseClass = 'w-full rounded-xl px-4 py-3 flex items-center';
+  const baseClass = 'w-full rounded-xl px-4 py-4 flex items-center';
   let cardClass = baseClass;
   let textClass = '';
   let icon: React.ReactNode = null;
 
   if (isBefore) {
     cardClass += ' justify-between bg-main-600';
-    textClass = 'text-white text-16-bold';
+    textClass = 'text-white text-16-medium';
     icon = <Check className="h-5 w-5 text-white" />;
   } else if (isCurrent) {
     cardClass += ' justify-between bg-main-500';
-    textClass = 'text-white text-16-bold';
+    textClass = 'text-white text-16-medium';
   } else if (isAfter) {
     cardClass += ' justify-between bg-main-300';
-    textClass = 'text-white text-16-bold';
+    textClass = 'text-white text-16-medium';
     icon = <Lock className="h-5 w-5 text-white" />;
   } else if (isLocked) {
     cardClass += ' justify-center bg-gray-100';
@@ -51,11 +53,17 @@ const ChallengeSubCard: React.FC<ChallengeSubCardProps> = ({
   }
 
   return (
-    <ChallengeCard isFirst={isFirst} isLast={isLast}>
-      <div className="w-full">
+    <ChallengeCard
+      isFirst={isFirst}
+      isLast={isLast}
+      isDone={isDone}
+      isCurrent={isCurrent}
+      isLocked={isLocked}
+    >
+      <div className="w-full py-2">
         <div className={cardClass}>
           {/* 텍스트 (잠금 카드가 아니면) */}
-          {!isLocked && <span className={textClass}>{title}</span>}
+          {<span className={textClass}>{title}</span>}
           {/* 상태별 아이콘 */}
           {icon}
         </div>
